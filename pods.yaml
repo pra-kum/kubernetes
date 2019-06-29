@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-api-flask
+spec:
+  selector:
+    matchLabels:
+      app: rest-api-flask
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: rest-api-flask
+    spec:
+      containers:
+        - name: rest-api-flask
+          image: prakum/rest-api-flask:v1
