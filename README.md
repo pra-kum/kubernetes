@@ -9,21 +9,25 @@ For the sake of brevity, the API will be deployed to a kubernetes cluster runnin
 * https://kubernetes.io/docs/tasks/tools/install-minikube/
 
 ### Installation
-Once the cluster is running, use the following commands to deploy the API:
+Once the cluster is running, use the following commands to deploy the API.
 
 Get the code from GitHub:
 ```
 git clone https://github.com/pra-kum/kubernetes.git
 cd kubernetes
 ```
-Executing the pods.yaml file. It will fetch "rest-api-flask" image from Docker Hub and deploy two replicas of a pod running the API.
+Execute the pods.yaml file. It will fetch "rest-api-flask" image from Docker Hub and deploy two replicas of a pod running the API.
 
-```kubectl apply -f pods.yaml```
+```
+kubectl apply -f pods.yaml
+```
 
-Executing the services.yaml file. It will create a service which define the pods to be represented by this service.
+Execute the services.yaml file. It will create a service which define the pods to be represented by this service.
 The service will act as network endpoint for either other services or maybe external users to connect to (e.g. a web browser or a API testing tool like Postman)
 
-```kubectl apply -f services.yaml```
+```
+kubectl apply -f services.yaml
+```
 
 The result can be verified as follows:
 ```
