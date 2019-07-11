@@ -13,23 +13,24 @@ Once the cluster is running, use the following commands to deploy the API.
 
 Get the code from GitHub:
 ```
-git clone https://github.com/pra-kum/kubernetes.git
-cd kubernetes
+$ git clone https://github.com/pra-kum/kubernetes.git
+$ cd kubernetes
 ```
-Execute the pods.yaml file. It will fetch "rest-api-flask" image from Docker Hub and deploy two replicas of a pod running the API.
+Execute 'pods.yaml' file. It will fetch "rest-api-flask" image from Docker Hub and deploy two replicas of a pod running the API.
 
 ```
-kubectl apply -f pods.yaml
+$ kubectl apply -f pods.yaml
 ```
 
-Execute the services.yaml file. It will create a service which define the pods to be represented by this service.
+Execute 'services.yaml' file. It will create a service which define the pods to be represented by this service.
 The service will act as network endpoint for either other services or maybe external users to connect to (e.g. a web browser or a API testing tool like Postman)
 
 ```
-kubectl apply -f services.yaml
+$ kubectl apply -f services.yaml
 ```
 
 The result can be verified as follows:
+
 ```
 $ kubectl get all
 NAME                                 READY   STATUS    RESTARTS   AGE
@@ -47,21 +48,25 @@ NAME                                       DESIRED   CURRENT   READY   AGE
 replicaset.apps/rest-api-flask-cb89646d6   2         2         2       10d
 ```
 
-### Testing
+The above output shows two pods(or two containers in this case) are running. Their names can be traced back to two replicasets and further to two deployments. The output also shows a service with the type of port it is using along with the port mapping.
 
-Get the CLUSTER IP by running the following:
+### Testing the API
+
+Get the CLUSTER IP of the running server as follows:
 ```
 $ minikube ip
 ```
+Note: The above IP is different from the IPs visible in the output of previous command `kubectl get all`
+
 Perform a quick GET operation by accessing the API resource in a browser:
 
 * http://\<CLUSTER IP\>:30080/items
   
-or in Terminal using curl:
+or in a Terminal using curl:
 ``` 
 $ curl http://<CLUSTER IP>:30080/items
 ```
-Note: The port 30080 (defined in services.yaml file) is required to access the service endpoint, which is further mapped to port 5000 on which the application in running inside the cluster (or EXPOSED by the docker image).
+Note: The port 30080 (defined in 'services.yaml') is required to access the service endpoint, which is further mapped to port 5000 on which the API in running inside the cluster (or EXPOSED by the docker container).
 
 The result will be an empty list:
 ```
@@ -70,7 +75,7 @@ The result will be an empty list:
 }
 ```
 
-To understand working of the API, please refer to the following link and access "section6" thenceforth:
+To further understand the operations supported by the API, please refer to the following link and access "section6" thenceforth:
 
 * https://github.com/pra-kum/rest-api-sections
 
@@ -91,4 +96,9 @@ NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
 service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   11d
 ```
 
+Since a cluster can consume a considerable amount of memory, you may need to stop the cluster when not using it as follows:
+
+```
+$ minikube stop
+```
 
