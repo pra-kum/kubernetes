@@ -4,7 +4,7 @@ A simple project to deploy a REST API in a kubernetes cluster.
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
-For the sake of brevity, the API will be deployed to a kubernetes cluster running on local machine. It is assumed that "minikube" and "kubectl" are already installed and a local cluster is running. If not, kindly refer to the official kubernetes documnetation links mentioned below to quickly setup the environment:
+For the sake of brevity, the API will be deployed to a kubernetes cluster running on local machine. It is assumed that "minikube" and "kubectl" are already installed and a local cluster is running. If not, kindly refer to the official kubernetes documentation links mentioned below to quickly setup the environment:
 * https://kubernetes.io/docs/tasks/tools/install-kubectl/
 * https://kubernetes.io/docs/tasks/tools/install-minikube/
 
